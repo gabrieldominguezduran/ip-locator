@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import LocationMap from "./components/LocationMap";
+import SearchBar from "./components/SearchBar";
+import InformationContainer from "./components/InformationContainer";
+import HistoryContainer from "./components/HistoryContainer";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main className="App">
+      <header>
+        <h1 className="title">Ip map locator</h1>
       </header>
-    </div>
+
+      <HistoryContainer />
+      <LocationMap title={"User location"} className={"user"} />
+      <SearchBar />
+      <LocationMap title={"Map"} className={"map"} />
+      <InformationContainer title={"User info"} className={"user"} />
+      <InformationContainer title={"Map info"} className={"search"} />
+    </main>
   );
 }
 
