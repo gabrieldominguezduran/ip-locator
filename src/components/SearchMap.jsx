@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 function SearchMap(props) {
   let position = [51.505, -0.09];
 
-  console.log(position);
   return (
     <section className={props.className}>
       <MapContainer

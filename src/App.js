@@ -8,9 +8,10 @@ import { UserContext } from "./components/UserContext";
 import "./App.css";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   const API_KEY = `afba4189c828952e1a96f223666bbf5a`;
+
   const url = `http://api.ipstack.com/check?access_key=${API_KEY}`;
 
   useEffect(() => {
