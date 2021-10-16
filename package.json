@@ -1,6 +1,5 @@
 {
   "name": "ip-locator",
-  "homepage": "http://gabrieldominguezduran.github.io/ip-locator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

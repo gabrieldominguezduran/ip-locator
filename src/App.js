@@ -9,7 +9,8 @@ import "./App.css";
 function App() {
   const { searchHistory, setSearchHistory } = useContext(SearchContext);
   const [currentUser, setCurrentUser] = useState({});
-  console.log(searchHistory, "From APP");
+  const [search, setSearch] = useState({});
+
   const API_KEY = `afba4189c828952e1a96f223666bbf5a`;
 
   const url = `http://api.ipstack.com/check?access_key=${API_KEY}`;
@@ -23,8 +24,20 @@ function App() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-
       setCurrentUser(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const fetchLocation = async (value) => {
+    try {
+      const response = await fetch(
+        `http://api.ipstack.com/${value}?access_key=${API_KEY}`
+      );
+      const data = await response.json();
+
+      setSearch(data);
     } catch (error) {
       console.log("error", error);
     }
@@ -43,19 +56,27 @@ function App() {
         text={"Your current location, zoom in!"}
       />
       <InformationContainer
-        title={"User info"}
+        title={"Your IP adress is:"}
         className={"user"}
         ip={currentUser.ip}
       />
 
       <SearchContext.Provider value={{ searchHistory, setSearchHistory }}>
-        <SearchBar />
-
-        <LocationMap title={"Map"} className={"map"} />
-
-        <InformationContainer title={"Map info"} className={"search"} />
+        <SearchBar fetchLocation={fetchLocation} />
         <HistoryContainer />
       </SearchContext.Provider>
+
+      <LocationMap
+        title={"Map"}
+        className={"map"}
+        position={[search.latitude, search.longitude]}
+      />
+
+      <InformationContainer
+        title={"Last search:"}
+        className={"search"}
+        ip={search.ip}
+      />
     </main>
   );
 }
