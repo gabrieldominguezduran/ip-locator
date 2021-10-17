@@ -10,6 +10,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [search, setSearch] = useState({});
   const [searchHistory, setSearchHistory] = useState([]);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     fetchCurrentUserIp();
@@ -34,16 +35,22 @@ function App() {
         `/api/${value}?access_key=${process.env.REACT_APP_API_KEY}&hostname=1`
       );
       const data = await response.json();
+      console.log(data);
+      if (!data.error) {
+        setSearch(data);
+        setValue(value);
 
-      setSearch(data);
+        let history = JSON.parse(localStorage.getItem("history")) || [];
+
+        history.push(value);
+        localStorage.setItem("history", JSON.stringify(history));
+        setSearchHistory(history);
+      } else {
+        alert(data.error.info);
+      }
     } catch (error) {
       console.log("error", error);
     }
-    let history = JSON.parse(localStorage.getItem("history")) || [];
-
-    history.push(value);
-    localStorage.setItem("history", JSON.stringify(history));
-    setSearchHistory(history);
   };
 
   return (
@@ -68,11 +75,12 @@ function App() {
         title={"Map"}
         className={"map"}
         position={[search.latitude, search.longitude]}
+        text={"Your search location, zoom in!"}
       />
       <InformationContainer
-        title={"Last search:"}
+        title={"Searched address:"}
         className={"search"}
-        ip={search.ip}
+        ip={value}
       />
       <SearchContext.Provider value={{ searchHistory, setSearchHistory }}>
         <HistoryContainer />

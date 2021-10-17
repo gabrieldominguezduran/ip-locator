@@ -48,15 +48,15 @@ header {
   grid-area: search;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 1.3rem;
-  font-weight: bold;
 }
 
-.search > input {
+.search__input {
+  width: 100%;
+  height: 50px;
+  font-size: 1.3rem;
+  font-weight: bold;
   padding: 0 1rem;
+  border-radius: 10px;
 }
 
 .search__btn {
