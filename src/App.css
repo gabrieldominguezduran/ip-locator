@@ -138,6 +138,16 @@ header {
   padding: 2rem 0.5rem;
 }
 
+.history-list {
+  list-style-type: none;
+}
+
+.history-list__item {
+  font-size: 1.1rem;
+  font-style: italic;
+  padding: 0.5rem;
+}
+
 @media (max-width: 550px) {
   #map,
   .card,

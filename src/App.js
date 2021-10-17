@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import LocationMap from "./components/LocationMap";
 import SearchBar from "./components/SearchBar";
 import InformationContainer from "./components/InformationContainer";
@@ -7,9 +7,9 @@ import { SearchContext } from "./components/SearchContext";
 import "./App.css";
 
 function App() {
-  const { searchHistory, setSearchHistory } = useContext(SearchContext);
   const [currentUser, setCurrentUser] = useState({});
   const [search, setSearch] = useState({});
+  const [searchHistory, setSearchHistory] = useState([]);
 
   const API_KEY = `afba4189c828952e1a96f223666bbf5a`;
 
@@ -41,6 +41,11 @@ function App() {
     } catch (error) {
       console.log("error", error);
     }
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+
+    history.push(value);
+    localStorage.setItem("history", JSON.stringify(history));
+    setSearchHistory(history);
   };
 
   return (
@@ -60,23 +65,20 @@ function App() {
         className={"user"}
         ip={currentUser.ip}
       />
-
-      <SearchContext.Provider value={{ searchHistory, setSearchHistory }}>
-        <SearchBar fetchLocation={fetchLocation} />
-        <HistoryContainer />
-      </SearchContext.Provider>
-
+      <SearchBar fetchLocation={fetchLocation} />
       <LocationMap
         title={"Map"}
         className={"map"}
         position={[search.latitude, search.longitude]}
       />
-
       <InformationContainer
         title={"Last search:"}
         className={"search"}
         ip={search.ip}
       />
+      <SearchContext.Provider value={{ searchHistory, setSearchHistory }}>
+        <HistoryContainer />
+      </SearchContext.Provider>
     </main>
   );
 }
