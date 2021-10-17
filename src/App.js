@@ -18,7 +18,9 @@ function App() {
 
   const fetchCurrentUserIp = async () => {
     try {
-      const response = await fetch(`/api/check?access_key=${API_KEY}`);
+      const response = await fetch(
+        `/api/check?access_key=${process.env.API_KEY}`
+      );
       const data = await response.json();
       setCurrentUser(data);
     } catch (error) {
@@ -28,7 +30,9 @@ function App() {
 
   const fetchLocation = async (value) => {
     try {
-      const response = await fetch(`/api/${value}?access_key=${API_KEY}`);
+      const response = await fetch(
+        `/api/${value}?access_key=${process.env.API_KEY}`
+      );
       const data = await response.json();
 
       setSearch(data);
