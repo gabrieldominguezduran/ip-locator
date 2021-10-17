@@ -19,7 +19,7 @@ function App() {
   const fetchCurrentUserIp = async () => {
     try {
       const response = await fetch(
-        `/api/check?access_key=${process.env.REACT_APP_API_KEY}`
+        `/api/check?access_key=${process.env.REACT_APP_API_KEY}&hostname=1`
       );
       const data = await response.json();
       setCurrentUser(data);
@@ -31,7 +31,7 @@ function App() {
   const fetchLocation = async (value) => {
     try {
       const response = await fetch(
-        `/api/${value}?access_key=${process.env.REACT_APP_API_KEY}`
+        `/api/${value}?access_key=${process.env.REACT_APP_API_KEY}&hostname=1`
       );
       const data = await response.json();
 
