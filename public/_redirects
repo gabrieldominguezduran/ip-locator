@@ -1,0 +1,1 @@
+/api/* http://api.ipstack.com/:splat 200!

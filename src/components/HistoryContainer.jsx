@@ -1,8 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SearchContext } from "./SearchContext";
 
 function HistoryContainer(props) {
-  const { searchHistory } = useContext(SearchContext);
+  const { searchHistory, setSearchHistory } = useContext(SearchContext);
+
+  useEffect(() => {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+    setSearchHistory(history);
+    return () => {
+      console.log(searchHistory);
+    };
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <section className="history">

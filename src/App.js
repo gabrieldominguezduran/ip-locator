@@ -11,10 +11,6 @@ function App() {
   const [search, setSearch] = useState({});
   const [searchHistory, setSearchHistory] = useState([]);
 
-  const API_KEY = `afba4189c828952e1a96f223666bbf5a`;
-
-  const url = `http://api.ipstack.com/check?access_key=${API_KEY}`;
-
   useEffect(() => {
     fetchCurrentUserIp();
     // eslint-disable-next-line
@@ -22,7 +18,7 @@ function App() {
 
   const fetchCurrentUserIp = async () => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(`/api/check?access_key=${API_KEY}`);
       const data = await response.json();
       setCurrentUser(data);
     } catch (error) {
@@ -32,9 +28,7 @@ function App() {
 
   const fetchLocation = async (value) => {
     try {
-      const response = await fetch(
-        `http://api.ipstack.com/${value}?access_key=${API_KEY}`
-      );
+      const response = await fetch(`/api/${value}?access_key=${API_KEY}`);
       const data = await response.json();
 
       setSearch(data);
