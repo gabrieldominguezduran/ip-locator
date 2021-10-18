@@ -13,8 +13,8 @@ html {
 
 body {
   max-width: 1300px;
-  background-color: rgba(151, 169, 187, 0.849);
   margin: 0 auto;
+  background-color: rgba(151, 169, 187, 0.849);
 }
 
 .App {
@@ -53,18 +53,18 @@ header {
 .search__input {
   width: 100%;
   height: 50px;
+  padding: 0 1rem;
   font-size: 1.3rem;
   font-weight: bold;
-  padding: 0 1rem;
   border-radius: 10px;
 }
 
 .search__btn {
+  margin-left: 1rem;
+  padding: 0 1rem;
   font-size: 1.1rem;
   color: rgb(253, 252, 251);
   background-color: rgba(35, 71, 62, 0.877);
-  margin-left: 1rem;
-  padding: 0 1rem;
   border-radius: 5px;
 }
 
@@ -84,7 +84,7 @@ header {
   justify-self: stretch;
 }
 
-#map {
+.leaflet-container {
   width: 30rem;
   height: 16rem;
   border: 5px solid #000;
@@ -110,7 +110,7 @@ header {
   border-radius: 5px;
 }
 
-#map:hover,
+.leaflet-container:hover,
 .card:hover,
 .history:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -122,7 +122,7 @@ header {
     flex-direction: column;
   }
 
-  #map,
+  .leaflet-container,
   .card,
   .history,
   .search {
@@ -132,10 +132,13 @@ header {
 }
 
 .text {
+  padding: 0.5rem;
   font-size: 1.3rem;
+}
+
+.text__span {
   font-style: italic;
-  text-align: center;
-  padding: 2rem 0.5rem;
+  font-weight: bold;
 }
 
 .history-list {
@@ -143,13 +146,13 @@ header {
 }
 
 .history-list__item {
+  padding: 0.5rem;
   font-size: 1.1rem;
   font-style: italic;
-  padding: 0.5rem;
 }
 
 @media (max-width: 550px) {
-  #map,
+  .leaflet-container,
   .card,
   .history,
   .search {

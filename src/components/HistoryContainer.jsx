@@ -7,9 +7,6 @@ function HistoryContainer(props) {
   useEffect(() => {
     let history = JSON.parse(localStorage.getItem("history")) || [];
     setSearchHistory(history);
-    return () => {
-      console.log(searchHistory);
-    };
     // eslint-disable-next-line
   }, []);
 

@@ -15,7 +15,7 @@ function SearchBar(props) {
       props.fetchLocation(searchValue);
       setSearchValue("");
     } else {
-      alert("Please give a valid IP address or URL");
+      alert("Please enter a valid IP address or a host name (example.com)");
     }
   };
 
@@ -26,6 +26,8 @@ function SearchBar(props) {
         type="search"
         name="search"
         id="search"
+        aria-label="search"
+        placeholder="Enter an IP address or host name"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />

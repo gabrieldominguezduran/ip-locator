@@ -10,11 +10,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [search, setSearch] = useState({});
   const [searchHistory, setSearchHistory] = useState([]);
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     fetchCurrentUserIp();
-    // eslint-disable-next-line
   }, []);
 
   const fetchCurrentUserIp = async () => {
@@ -35,10 +33,8 @@ function App() {
         `/api/${value}?access_key=${process.env.REACT_APP_API_KEY}&hostname=1`
       );
       const data = await response.json();
-      console.log(data);
       if (!data.error) {
         setSearch(data);
-        setValue(value);
 
         let history = JSON.parse(localStorage.getItem("history")) || [];
 
@@ -66,9 +62,9 @@ function App() {
         text={"Your current location, zoom in!"}
       />
       <InformationContainer
-        title={"Your IP adress is:"}
+        title={"Your connection info:"}
         className={"user"}
-        ip={currentUser.ip}
+        search={currentUser}
       />
       <SearchBar fetchLocation={fetchLocation} />
       <LocationMap
@@ -78,9 +74,9 @@ function App() {
         text={"Your search location, zoom in!"}
       />
       <InformationContainer
-        title={"Searched address:"}
+        title={"Searched info:"}
         className={"search"}
-        ip={value}
+        search={search}
       />
       <SearchContext.Provider value={{ searchHistory, setSearchHistory }}>
         <HistoryContainer />
