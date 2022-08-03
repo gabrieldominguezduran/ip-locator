@@ -1,7 +1,5 @@
 # IP map locator where you can search by IP address or host name
 
-Try it at: [Ip map locator](https://ip-map-locator.netlify.app/)
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Clone the project and you can run:
